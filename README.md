@@ -14,7 +14,7 @@ O objetivo de desenvolver este código é provar a eficiência do uso de algorit
 O algoritmo funciona da seguinte maneira: 
 
 ### Geração de "população" inicial
-Inicialmente é gerada uma população de <i>n</i> (u, dos parâ,etros de entrada da rotina) indivíduos de pares de médias móveis de forma aleatória; posteriormente, será posssível carregar essa população inicial a partir de um arquivo de populações já existente.
+Inicialmente é gerada uma população de <i>n</i> (um dos parâmetros de entrada da rotina) indivíduos de pares de médias móveis de forma aleatória; posteriormente, será posssível carregar essa população inicial a partir de um arquivo de populações já existente.
 
 ### Seleção
 É feito um backtest (teste da estratégia contra o passado, com base nos dados do arquivo de cotações históricas utilizado) de cada par de médias móveis e feita uma seleção de x% (também passada como parâmetro na chamada da rotina), descartando-se também, qualquer indivíduo cujo resultado do backtest seja negativo; aos indivíduos "sobreviventes" à seleção, é aplicada uma função de aptidão, onde serão selecionados, com maior probabilidade, os indivíduos cujo P&L (resultado do backtest da estratégia) sejam maiores. A probabilidade de seleção de cada indivíduo é definida pela seguinte fórmula:
