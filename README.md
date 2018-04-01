@@ -5,7 +5,7 @@ Implementação de algoritmo genético para otimização de estratégia de cruza
 
 A implementação foi feita em VBA de um algoritmo genético para otimização de estratégia de cruzamento de médias móveis simples (https://www.investopedia.com/terms/s/sma.asp), processando dados de um arquivo de cotações históricas de mercado à vista que pode foi baixado so site da B3 (http://www.bmfbovespa.com.br/pt_br/servicos/market-data/historico/mercado-a-vista/cotacoes-historicas/). Na mesma página, é possível, além dos arquivos de cotação histórica, baixar o template dos dados, que serviu de base para esta implementação.
 
-Nesta primeira versão, não foi implementada a função de mutação nem de salvar o arquivo resultado e possivelmente há um bug no módulo de back test, detectado nos primeiros testes do algoritmo, a ser corrigido em versões futuras.
+Na versão, não foi implementada ainda a função de mutação, a ser corrigido em versões futuras.
 
 ## Objetivo
 O objetivo de desenvolver este código é provar a eficiência do uso de algoritmos genéticos para otimização de estratégias de trading, cujos resultados devam vir a ser publicados posteriormente.
@@ -31,7 +31,7 @@ p_sel(i) = P&L(i) / soma(P&L_total),
 Ou seja, a probabilidade de seleção é diretamente proporcional à representatividade de ganho de cada indivíduo sobre o total. Desta forma, por exemplo, um indivíduo que represente 30% do ganho total, de forma individual, terá 30% de chance de ser selecionado para a geração de novos indivíduos.
 
 ### Recombinação <i>(crossing over)</i>:
-De acordo com a função de aptidão descrita acima, uma nova população é gerada, cruza=ndo-se os <i>"genes"</i> de cada indivíduo (ou seja, a média móvel curta e a média móvel longa).
+De acordo com a função de aptidão descrita acima, uma nova população é gerada, cruzando-se os <i>"genes"</i> de cada indivíduo (ou seja, a média móvel curta e a média móvel longa).
 
 ### Iterações
 A partir disso, todo o processo é repetido por um número de vezes que é definido como um dos parâmetros da função.
