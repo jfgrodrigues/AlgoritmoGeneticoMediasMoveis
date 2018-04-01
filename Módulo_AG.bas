@@ -29,7 +29,7 @@ Sub run_ag(instrumento As String, num_iteracoes As Integer, arq_cotacao As Strin
         matriz_populacao(i).res_back_test = run_back_test(arq_cotacao, instrumento, matriz_populacao(i).medias_moveis(0), matriz_populacao(i).medias_moveis(1))
     Next
     duracao = Now - inicio
-    Call salvar_resultado(instrumento, num_iteracoes, tam_populacao, duracao)
+    Call salvar_resultado("C:\Users\JeanFelipe\Documents\", instrumento, num_iteracoes, tam_populacao, duracao)
 
 End Sub
 
@@ -37,7 +37,7 @@ Sub gerar_populacao_inicial()
     Dim MM1 As Integer, MM2 As Integer, MM_temp As Integer
     For i = 0 To UBound(matriz_populacao)
         Randomize
-        MM1 = Int(35 * Rnd) + 1
+        MM1 = Int(25 * Rnd) + 1
         MM2 = Int(50 * Rnd) + 1
         If MM1 > MM2 Then
             MM_temp = MM1
@@ -66,17 +66,36 @@ Sub mutacao(percent)
 
 End Sub
 
-Sub salvar_resultado(instr As String, iteracoes As Integer, populacao As Integer, tempo As Date)
-
+Sub salvar_resultado(caminho As String, instrumento As String, iteracoes As Integer, populacao As Integer, tempo As Date)
+    Dim matriz_csv(1000, 0) As String
+    
+    matriz_csv(0, 0) = "0," & instrumento & "," & CStr(iteracoes) & "," & CStr(populacao) & "," & CStr(tempo)
+    For i = 1 To populacao
+        matriz(i, 0) = "1," & CStr(matriz_populacao(i - 1).medias_moveis(0)) & "," & CStr(matriz_populacao(i - 1).medias_moveis(1)) & "," & CStr(matriz_populacao(i - 1).res_back_test)
+    Next
+    matriz_csv(populacao + 1, 0) = "3," & CStr(populacao)
+    
+    Sheets("arq_saida").Range("A1:A1000") = matriz_csv
+    
+    Call salvar_arquivo(caminho, instrumento, CStr(populacao), CStr(iteracoes))
 End Sub
 
 Sub recombinacao(percent_sobrevivencia As Double)
-    Dim matriz_temp() As individuos
+    Dim matriz_temp() As individuos, sma1 As Integer, sma2 As Integer, smat As Integer
     
     ReDim matriz_temp(UBound(matriz_populacao))
     For i = 0 To UBound(matriz_populacao)
-        matriz_temp(i).medias_moveis(0) = matriz_populacao(get_selecao_por_aptidao(percent_sobrevivencia)).medias_moveis(0)
-        matriz_temp(i).medias_moveis(1) = matriz_populacao(get_selecao_por_aptidao(percent_sobrevivencia)).medias_moveis(1)
+        sma1 = get_selecao_por_aptidao(percent_sobrevivencia)
+        sma2 = get_selecao_por_aptidao(percent_sobrevivencia)
+        
+        If sma1 > sma2 Then
+            smat = sma1
+            sma1 = sma2
+            sma2 = smat
+        End If
+        
+        matriz_temp(i).medias_moveis(0) = matriz_populacao(sma1).medias_moveis(0)
+        matriz_temp(i).medias_moveis(1) = matriz_populacao(sma2).medias_moveis(1)
     Next
     
     For i = 0 To UBound(matriz_populacao)

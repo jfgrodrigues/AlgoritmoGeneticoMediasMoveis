@@ -5,9 +5,11 @@ Public matriz_estrategia(10000, 7) As String, linha_matriz As Integer, position 
 Sub pegar_dados(caminho As String, papel As String, MM1 As Integer, MM2 As Integer)
     Dim raw_row As String, papel_normalizado As String
     
+    P_L = 0
+    limpar_matriz
+    
     Set ObjFSO = CreateObject("Scripting.FileSystemObject")
     Set ObjFile = ObjFSO.OpenTextFile(caminho, 1)
-    P_L = 0
     
     While Not ObjFile.AtEndOfStream
         raw_row = ObjFile.ReadLine
@@ -138,9 +140,11 @@ End Sub
 Function run_back_test(caminho As String, papel As String, MM1 As Integer, MM2 As Integer) As Double
     Dim raw_row As String, papel_normalizado As String
     
+    P_L = 0
+    limpar_matriz
+    
     Set ObjFSO = CreateObject("Scripting.FileSystemObject")
     Set ObjFile = ObjFSO.OpenTextFile(caminho, 1)
-    P_L = 0
     
     While Not ObjFile.AtEndOfStream
         raw_row = ObjFile.ReadLine
@@ -167,3 +171,11 @@ Function run_back_test(caminho As String, papel As String, MM1 As Integer, MM2 A
     linha_matriz = 0
     run_back_test = P_L
 End Function
+
+Sub limpar_matriz()
+    For i = 0 To 10000
+        For i2 = 0 To 7
+            matriz_estrategia(i, i2) = ""
+        Next
+    Next
+End Sub
