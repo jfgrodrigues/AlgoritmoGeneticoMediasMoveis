@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo_Back_Test"
+Attribute VB_Name = "MÃ³dulo_Back_Test"
 Public matriz_estrategia(10000, 7) As String, linha_matriz As Integer, position As String, P_L As Double, entrada As Boolean, saida As Boolean, entrada_comprado As Boolean, prc_ent As Double, prc_out As Double
 
 
@@ -182,11 +182,7 @@ End Function
 Sub limpar_matriz()
     For i = 0 To 10000
         For i2 = 0 To 7
-            'If i2 = 1 Then
-            '    matriz_estrategia(i, i2) = "0"
-            'Else
-                matriz_estrategia(i, i2) = ""
-            'End If
+            matriz_estrategia(i, i2) = ""
         Next
     Next
 End Sub
