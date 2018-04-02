@@ -37,8 +37,8 @@ Sub gerar_populacao_inicial()
     Dim MM1 As Integer, MM2 As Integer, MM_temp As Integer
     For i = 0 To UBound(matriz_populacao)
         Randomize
-        MM1 = Int(25 * Rnd) + 1
-        MM2 = Int(50 * Rnd) + 1
+        MM1 = Int(25 * Rnd) + 5
+        MM2 = Int(50 * Rnd) + 7
         If MM1 > MM2 Then
             MM_temp = MM1
             MM1 = MM2
