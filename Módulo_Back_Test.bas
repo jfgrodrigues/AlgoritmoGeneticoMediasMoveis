@@ -7,6 +7,9 @@ Sub pegar_dados(caminho As String, papel As String, MM1 As Integer, MM2 As Integ
     
     P_L = 0
     limpar_matriz
+    entrada = False
+    saida = False
+    entrada_comprado = False
     
     Set ObjFSO = CreateObject("Scripting.FileSystemObject")
     Set ObjFile = ObjFSO.OpenTextFile(caminho, 1)
@@ -33,6 +36,7 @@ Sub pegar_dados(caminho As String, papel As String, MM1 As Integer, MM2 As Integ
             linha_matriz = linha_matriz + 1
         End If
     Wend
+    linha_matriz = 0
     Sheets("resultado").Range("A2:H1000") = matriz_estrategia
     Sheets("resultado").Range("K3") = P_L
 End Sub
@@ -142,6 +146,9 @@ Function run_back_test(caminho As String, papel As String, MM1 As Integer, MM2 A
     
     P_L = 0
     limpar_matriz
+    entrada = False
+    saida = False
+    entrada_comprado = False
     
     Set ObjFSO = CreateObject("Scripting.FileSystemObject")
     Set ObjFile = ObjFSO.OpenTextFile(caminho, 1)
@@ -175,7 +182,11 @@ End Function
 Sub limpar_matriz()
     For i = 0 To 10000
         For i2 = 0 To 7
-            matriz_estrategia(i, i2) = ""
+            'If i2 = 1 Then
+            '    matriz_estrategia(i, i2) = "0"
+            'Else
+                matriz_estrategia(i, i2) = ""
+            'End If
         Next
     Next
 End Sub
