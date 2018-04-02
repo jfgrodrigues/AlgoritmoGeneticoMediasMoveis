@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo_AG"
+Attribute VB_Name = "MÃ³dulo_AG"
 Type individuos
     medias_moveis(1) As Integer
     res_back_test As Double
@@ -71,7 +71,7 @@ Sub salvar_resultado(caminho As String, instrumento As String, iteracoes As Inte
     
     matriz_csv(0, 0) = "0," & instrumento & "," & CStr(iteracoes) & "," & CStr(populacao) & "," & CStr(tempo)
     For i = 1 To populacao
-        matriz(i, 0) = "1," & CStr(matriz_populacao(i - 1).medias_moveis(0)) & "," & CStr(matriz_populacao(i - 1).medias_moveis(1)) & "," & CStr(matriz_populacao(i - 1).res_back_test)
+        matriz_cxv(i, 0) = "1," & CStr(matriz_populacao(i - 1).medias_moveis(0)) & "," & CStr(matriz_populacao(i - 1).medias_moveis(1)) & "," & CStr(matriz_populacao(i - 1).res_back_test)
     Next
     matriz_csv(populacao + 1, 0) = "3," & CStr(populacao)
     
