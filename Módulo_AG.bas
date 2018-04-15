@@ -171,8 +171,7 @@ Function get_selecao_por_aptidao(percent_sobrevivencia As Double) As Integer
         End If
     Next
     
-    Randomize
-    random_var = Rnd
+    random_var = get_random
     
     For i = 0 To tam_vetor
         If random_var <= possibilidade_descendencia(i) Then
