@@ -22,14 +22,14 @@ Sub run_ag(instrumento As String, num_iteracoes As Integer, arq_cotacao As Strin
         Next
         Call selecionar_resultados(percent_sobrevivencia)
         Call recombinacao(percent_sobrevivencia)
-        Call mutacao(percent_mutacao)
+        Call mutacao(percent_mutacao, tam_populacao)
     Next
     
     For i = 0 To UBound(matriz_populacao)
         matriz_populacao(i).res_back_test = run_back_test(arq_cotacao, instrumento, matriz_populacao(i).medias_moveis(0), matriz_populacao(i).medias_moveis(1))
     Next
     duracao = Now - inicio
-    Call salvar_resultado("C:\Users\JeanFelipe\Documents\", instrumento, num_iteracoes, tam_populacao, duracao)
+    Call salvar_resultado("C:\Users\Jean\Documents\SysAlpha\resultado_AG\", instrumento, num_iteracoes, tam_populacao, duracao)
 
 End Sub
 
@@ -62,8 +62,30 @@ Sub get_populacao_inicial()
 
 End Sub
 
-Sub mutacao(percent)
-
+Sub mutacao(percent As Double, populacao As Integer)
+    Dim qtd_mutacoes As Integer, media_movel_mutada As Integer, sorteio_mm As Double, individuo_mutado As Integer, sorteio_individo As Double
+    
+    qtd_mutacoes = Int(populacao - 1 * percent)
+    If qtd_mutacoes > 1 Then
+        qtd_mutacoes = 1
+    End If
+    
+    For i = 0 To qtd_mutacoes - 1
+        Randomize
+        sorteio_mm = Rnd
+        If sorteio_mm >= 0.5 Then
+            media_movel_mutada = 1
+        End If
+        Randomize
+        sorteio_individo = Rnd
+        individuo_mutado = Int(sorteio_individo * populacao) - 1
+        If Rnd > 0.5 Then
+            matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) + 1
+        Else
+            matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) - 1
+        End If
+    Next
+    
 End Sub
 
 Sub salvar_resultado(caminho As String, instrumento As String, iteracoes As Integer, populacao As Integer, tempo As Date)
@@ -171,7 +193,8 @@ Function get_selecao_por_aptidao(percent_sobrevivencia As Double) As Integer
         End If
     Next
     
-    random_var = get_random
+    Randomize
+    random_var = Rnd
     
     For i = 0 To tam_vetor
         If random_var <= possibilidade_descendencia(i) Then
