@@ -1,4 +1,4 @@
-Attribute VB_Name = "MÃ³dulo_AG"
+Attribute VB_Name = "Módulo_AG"
 Type individuos
     medias_moveis(1) As Integer
     res_back_test As Double
@@ -63,7 +63,7 @@ Sub get_populacao_inicial()
 End Sub
 
 Sub mutacao(percent As Double, populacao As Integer)
-    Dim qtd_mutacoes As Integer, media_movel_mutada As Integer, sorteio_mm As Double, individuo_mutado As Integer, sorteio_individo As Double
+    Dim qtd_mutacoes As Integer, media_movel_mutada As Integer, sorteio_mm As Double, individuo_mutado As Integer, sorteio_individuo As Double
     
     qtd_mutacoes = Int(populacao - 1 * percent)
     If qtd_mutacoes > 1 Then
@@ -77,9 +77,9 @@ Sub mutacao(percent As Double, populacao As Integer)
             media_movel_mutada = 1
         End If
         Randomize
-        sorteio_individo = Rnd
-        individuo_mutado = Int(sorteio_individo * populacao) - 1
-        If sorteio_individo > 0.5 Then
+        sorteio_individuo = Rnd
+        individuo_mutado = Int(sorteio_individuo * populacao) - 1
+        If sorteio_individuo > 0.5 Then
             matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) + 1
         Else
             matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) - 1
