@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo_AG"
+Attribute VB_Name = "MÃ³dulo_AG"
 Type individuos
     medias_moveis(1) As Integer
     res_back_test As Double
@@ -79,7 +79,7 @@ Sub mutacao(percent As Double, populacao As Integer)
         Randomize
         sorteio_individo = Rnd
         individuo_mutado = Int(sorteio_individo * populacao) - 1
-        If Rnd > 0.5 Then
+        If sorteio_individo > 0.5 Then
             matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) + 1
         Else
             matriz_populacao(individuo_mutado).medias_moveis(media_movel_mutada) = matriz_populacao(sorteio_individuo_mutado).medias_moveis(media_movel_mutada) - 1
