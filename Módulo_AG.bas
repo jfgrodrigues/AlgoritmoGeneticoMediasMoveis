@@ -16,7 +16,7 @@ Sub run_ag(instrumento As String, num_iteracoes As Integer, arq_cotacao As Strin
         Call gerar_populacao_inicial
     End If
     
-    For i = 0 To num_iteracoes
+    For i = 1 To num_iteracoes
         For i2 = 0 To UBound(matriz_populacao)
             matriz_populacao(i2).res_back_test = run_back_test(arq_cotacao, instrumento, matriz_populacao(i2).medias_moveis(0), matriz_populacao(i2).medias_moveis(1))
         Next
@@ -29,7 +29,7 @@ Sub run_ag(instrumento As String, num_iteracoes As Integer, arq_cotacao As Strin
         matriz_populacao(i).res_back_test = run_back_test(arq_cotacao, instrumento, matriz_populacao(i).medias_moveis(0), matriz_populacao(i).medias_moveis(1))
     Next
     duracao = Now - inicio
-    Call salvar_resultado("C:\Users\Jean\Documents\SysAlpha\resultado_AG\", instrumento, num_iteracoes, tam_populacao, duracao)
+    Call salvar_resultado(<colocar o caminho a ser salvo aqui>, instrumento, num_iteracoes, tam_populacao, duracao)
 
 End Sub
 
